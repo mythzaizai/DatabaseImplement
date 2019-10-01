@@ -14,9 +14,9 @@
     //echo "Password:$password<br>";
 
     if($account=="0000" &&  $password=="0000"){   //先暫時預設
-        header("location:../;tip='歡迎!'");
+        header("location:./?tip=歡迎!");
     }else{
-        header("location:./;tip='登入失敗~'");
+        header("location:./?tip=登入失敗~");
     }
 
 
