@@ -5,10 +5,12 @@
     $password = "zaizai";
     $dbname = "zaidatabase";
 
-    $connection = mysqli_connect($host,$username,$password,$dbname);
+    $connect = mysqli_connect($host,$username,$password,$dbname);
 
     if(mysqli_connect_error()){
         die("connect fail"."<br>");
+    }else{
+        echo "connecting";
     }
 
 ?>
