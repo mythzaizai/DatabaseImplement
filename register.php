@@ -3,6 +3,7 @@
 
     ini_set("display_errors","On");
 
+    $id = $_POST['id'];
     $member = $_POST['name'];
     $gender = $_POST['gender'];
     $phone = $_POST['phone'];
@@ -14,7 +15,7 @@
 
 
     $insert = $connect -> prepare("INSERT INTO employee_id(member,gender,account,password)VALUES(?,?,?,?,?)");
-    $insert -> execute(array($member,$gender,$phone,$account,$password));
+    $insert -> execute(array($id,$member,$gender,$phone,$account,$password));
     header("location:../?tip=註冊成功");
 
 
