@@ -9,13 +9,13 @@
     $account = $_POST['account'];       //$account=0=0 ||
     $password = $_POST['password'];
 /*
-    if($connect -> prepare("SELECT employee_cellphone,employee_password FORM zaidatabase WHERE $account = :acc AND $password = :pw")){
+    if($connect -> prepare("SELECT * FROM 'employee' WHERE 1")){
         echo "true";
     }else{
         echo "false";
     }
 */
-    $select = $connect -> prepare("SELECT employee_cellphone,employee_password FORM zaidatabase WHERE $account = :acc AND $password = :pw");
+    $select = $connect -> prepare("SELECT employee_cellphone,employee_password FROM employee WHERE employee_cellphone = $account AND employee_password = $password");
     $select -> execute(array(':acc' => $account,':pw' => $password));
     $result = $select -> fetch(PDO::FETCH_ASSOC);      //PDO::FETCH_ASSOC 返回以欄位名稱作為索引鍵(key)的陣列(array)
     
