@@ -6,17 +6,28 @@
     ini_set("display_errors", "On");
     require_once "./connect.php";
 
-    $account = $_POST['account'];
+    $account = $_POST['account'];       //$account=0=0 ||
     $password = $_POST['password'];
-
-
-    //echo "Account:$account<br>";
-    //echo "Password:$password<br>";
-
-    if($account=="0000" &&  $password=="0000"){   //先暫時預設
-        header("location:./?tip=歡迎!");
+/*
+    if($connect -> prepare("SELECT employee_cellphone,employee_password FORM zaidatabase WHERE $account = :acc AND $password = :pw")){
+        echo "true";
     }else{
-        header("location:./?tip=登入失敗~");
+        echo "false";
+    }
+*/
+    $select = $connect -> prepare("SELECT employee_cellphone,employee_password FORM zaidatabase WHERE $account = :acc AND $password = :pw");
+    $select -> execute(array(':acc' => $account,':pw' => $password));
+    $result = $select -> fetch(PDO::FETCH_ASSOC);      //PDO::FETCH_ASSOC 返回以欄位名稱作為索引鍵(key)的陣列(array)
+    
+
+    if($account==$result['account'] &&  $password==$result['password']){   //先暫時預設
+        session_start();
+        $_SESSION['member'] = $result;
+        header("Location:./?hint=歡迎!");
+    }elseif($account == '' || $password == ''){
+        header("Location:./?hint=輸入不完全~");
+    }else{
+        header("Location:./?hint=帳號或密碼錯誤~");
     }
 
 
