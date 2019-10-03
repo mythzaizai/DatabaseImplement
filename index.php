@@ -18,16 +18,20 @@
     
     
     <form action="loginCheck.php" method="post">
-         <input type="text" name="account" value="" placeholder="輸入帳號"><br>
+         <input type="email" name="account" value="" placeholder="輸入帳號(email)"><br>
          <input type="password" name="password" value="" placeholder="輸入密碼">
          <input type="submit" name="" value="登入">
     </form>
-    
+    <a href="./register">點我註冊!</a><br>
 
     
-    <?php if ($_GET['tip']!=''): ?>
-    <?php echo $_GET['tip'] ?>
-    <?php endif; ?>
+    <?php
+        ini_set("display_errors","off");
+        
+        if($_GET['hint']!=''){
+            echo $_GET['hint'];
+        }
+    ?>
 
 </body>
     
