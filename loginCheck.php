@@ -9,18 +9,18 @@
     $account = $_POST['account'];       //$account=0=0 ||
     $password = $_POST['password'];
 /*
-    if($connect -> prepare("SELECT * FROM 'employee' WHERE 1")){
+    if($connect -> prepare("SELECT * FROM employee WHERE 1")){
         echo "true";
     }else{
         echo "false";
     }
 */
-    $select = $connect -> prepare("SELECT employee_cellphone,employee_password FROM employee WHERE employee_cellphone = $account AND employee_password = $password");
-    $select -> execute(array(':acc' => $account,':pw' => $password));
-    $result = $select -> fetch(PDO::FETCH_ASSOC);      //PDO::FETCH_ASSOC 返回以欄位名稱作為索引鍵(key)的陣列(array)
+    $select = $connect -> prepare("SELECT employee_cellphone,employee_password FROM employee WHERE employee_cellphone = '$account' AND employee_password = '$password' ");
+    $select -> execute(array('employee_cellphone' => $account,'employee_password' => $password));
+    $result = $select -> fetch(PDO::FETCH_ASSOC);      //返回以欄位名稱作為key的陣列
     
 
-    if($account==$result['account'] &&  $password==$result['password']){   //先暫時預設
+    if($account==$result['employee_cellphone'] &&  $password==$result['employee_password']){   //先暫時預設
         session_start();
         $_SESSION['member'] = $result;
         header("Location:./?hint=歡迎!");
