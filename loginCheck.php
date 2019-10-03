@@ -19,8 +19,8 @@
 */
 
 /*
-    $select = $connect -> prepare("SELECT employee_cellphone,employee_password FROM employee WHERE employee_cellphone = '$account' AND employee_password = '$password' ");
-    $select -> execute(array('employee_cellphone' => $account,'employee_password' => $password));
+    $select = $connect -> prepare("SELECT employee_email,employee_password FROM employee WHERE employee_email = '$account' AND employee_password = '$password' ");
+    $select -> execute(array('employee_email' => $account,'employee_password' => $password));
     $result = $select -> fetch(PDO::FETCH_ASSOC);      //返回以欄位名稱作為key的陣列
     
     
@@ -36,7 +36,7 @@
     
 */ 
 
-    $query = "SELECT * FROM employee WHERE employee_cellphone = '$account' AND employee_password = '$password' ";
+    $query = "SELECT * FROM employee WHERE employee_email = '$account' AND employee_password = '$password' ";
 
     mysqli_query("set names utf8");         //注意mysql 和 mysqli
     $result=mysqli_query($connect,$query);
