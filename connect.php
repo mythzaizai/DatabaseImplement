@@ -10,7 +10,7 @@
     if(mysqli_connect_error()){
         die("connect fail"."<br>");
     }else{
-        echo "connecting";
+        echo "connecting<br>";
     }
 
 ?>
